@@ -75,16 +75,17 @@ const init = async () => {
             const id = request.params.uuid;
             const pass = request.payload.password;
             
-            console.log("http://localhost:3000/post/" + id);
             try {
                 const result = await db.collection("posts").findOne({url: "http://localhost:3000/post/" + id});
-                if(result.password === pass) {return result.text}
-                return h.response("Incorrect Password").code(400);
+                if(result.password === pass) return result.text
+                
+                return h.response("Incorrect Password: " + pass).code(400);
             }
             catch (err) {
                 throw Boom.internal('Internal MongoDB error', err);
             }
         }
+
     },
 ]);
 
@@ -93,7 +94,6 @@ const init = async () => {
 };
 
 process.on('unhandledRejection', (err) => {
-
     console.log(err);
     process.exit(1);
 });
