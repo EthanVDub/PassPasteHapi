@@ -37,7 +37,7 @@ class Search extends Component {
                             placeholder='Enter a post id'
                         />
                     </label>
-                    <br/>
+                    &nbsp;
                     <label>
                         Post Pass: &nbsp;
                         <input 
@@ -48,8 +48,8 @@ class Search extends Component {
                             placeholder='Enter a password'
                         />
                     </label>
-                    <br/>
-                    <button>Send data!</button>
+                    &nbsp;
+                    <button>Find Post!</button>
                     
                 </form>
                 
