@@ -26,7 +26,7 @@ class App extends Component {
   onIdSubmit = async (id, passedPassword) => {
     this.clear();
     const response = await axios.post(
-      'http://localhost:3000/post/' + id,
+      '/api/post/' + id,
       { password: passedPassword},
       { headers: { 'Content-Type': 'application/json' }}
     )
@@ -41,23 +41,24 @@ class App extends Component {
       this.setState({ password: e.target.value})
   }
 
-  onFormSubmit = async () => {
+  onFormSubmit = async (e) => {
+    e.preventDefault()
     const req = {
       text: this.state.postText,
       password: this.state.password
     }
     const response = await axios.post(
-      'http://localhost:3000/make_post',
+      '/api/make_post',
       req,
       { headers: { 'Content-Type': 'application/json' }}
     )
-    this.setState({text: response.data})
+    this.setState({text: response.data.text})
   };
 
   render() {
     return (
       <div className="App">
-        <div class="header">
+        <div className="header">
           <Search submit={this.onIdSubmit} />
         </div>
         <header className="App-header">

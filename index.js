@@ -16,7 +16,7 @@ const init = async () => {
     };
 
     const server = Hapi.server({
-        port: 3000,
+        port: 3001,
         host: 'localhost'
     });
 
@@ -29,14 +29,14 @@ const init = async () => {
     server.route([
     {
         method: 'GET',
-        path: '/ping',
+        path: '/api/ping',
         handler: (request, h) => {
             return 'pong'
         }
     },
     {
         method: 'POST',
-        path: '/make_post',
+        path: '/api/make_post',
         handler: (request, h) => {
             const newUUID = uuid.v4();
             const newPost = {
@@ -62,14 +62,14 @@ const init = async () => {
     },
     {
         method: 'GET',
-        path: '/post/{uuid}',
+        path: '/api/post/{uuid}',
         handler: (request, h) => {
             return h.redirect("/ping")
         }
     },
     { //Get a post using the given password
         method: 'POST',
-        path: '/post/{uuid}',
+        path: '/api/post/{uuid}',
         handler: async (request, h) => {
             const db = request.mongo.db;
             const id = request.params.uuid;
