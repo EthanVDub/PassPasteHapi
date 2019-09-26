@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import SimpleMDE from "react-simplemde-editor";
+import Markdown from 'react-markdown';
 import "easymde/dist/easymde.min.css";
 import './App.css';
-import Search from './Search'
+import Search from './Search';
 import axios from 'axios';
 
 class App extends Component {
@@ -62,25 +63,34 @@ class App extends Component {
           <Search submit={this.onIdSubmit} />
         </div>
         <header className="App-header">
-          <SimpleMDE 
-            onChange={this.onInputChangeText} 
-            label="New Post"
-          />
+          <div className="simplemde">
+            <SimpleMDE 
+              onChange={this.onInputChangeText} 
+              label="New Post"
+              options={{
+                lineWrapping: true,
+              }}
+            />
+          </div>
           <form className="url-form-form" onSubmit={this.onFormSubmit}>
-            <label>
-                Post Password:&nbsp;
-                <input 
-                    onChange={this.onInputChangePass}
-                    value={this.state.url}
-                    type='text'
-                    className='centerInput'
-                    placeholder='Password...'
-                />
-            </label>
+            <div className="password-enter">
+              <label>
+                  Post Password:&nbsp;
+                  <input 
+                      onChange={this.onInputChangePass}
+                      value={this.state.url}
+                      type='password'
+                      className='centerInput'
+                      placeholder='Password...'
+                  />
+              </label>
+            </div>
             <br/>
             <button>Create Post</button>
           </form>
-          <h1>{this.state.text}</h1>
+          <div className="text-location">
+            <Markdown source={this.state.text} />
+          </div>
         </header>
       </div>
     );

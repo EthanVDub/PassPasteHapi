@@ -43,16 +43,14 @@ class Search extends Component {
                         <input 
                             onChange={this.onInputChangePass}
                             value={this.state.password}
-                            type='text'
+                            type='password'
                             className='centerInput'
                             placeholder='Enter a password'
                         />
                     </label>
                     &nbsp;
-                    <button>Find Post!</button>
-                    
+                    <button>Find Post!</button>  
                 </form>
-                
             </div>
         )
     }
